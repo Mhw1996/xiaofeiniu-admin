@@ -41,10 +41,19 @@ Vue.filter('currency',(val)=>{
   return '￥'+val.toFixed(2) 
 })
 
-Vue.config.productionTip = false
+Vue.filter("tableStatus",(val)=>{
+  if(val==1) return "空闲"
+  else if(val==2) return "预定"
+  else if(val==3) return "占用"
+  else return "其他"
+})
 
+Vue.config.productionTip = false
+// 全局的跟组件
 new Vue({
   router,
-  store,
-  render: h => h(App)
+  store,              //仓库，存储，指定当前项目唯一的Vuex存储仓库对象，其中保存着可供所有组件共享的数据
+  render: h => h(App) 
+  //render渲染，==>根据App组件创建<App></App>元素挂在到#app内部；
+  // (createElement)=>{return createElement(App)}
 }).$mount('#app')
